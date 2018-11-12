@@ -1,0 +1,20 @@
+<div class="doublebox" id="blogpost-{{ blogpost.post_id }}">
+    <div class="top">
+        <span class="left">
+            <span class="title">
+                Blogpost
+            </span>
+        </span>
+        <span class="right">
+            <span class="date">
+                {{ blogpost.time }}
+            </span>
+            <a class="permalink" href="/blogpost/{{ blogpost.post_id }}">
+                #
+            </a>
+        </span>
+    </div>
+    <div class="bot">
+        {{ blogpost.content | safe }}
+    </div>
+</div>
