@@ -10,7 +10,6 @@ class BlogPost(database.Model):
     author = database.Column(database.String)
     content = database.Column(database.Text)
     timestamp = database.Column(database.DateTime, nullable=False)
-    edit_timestamp = database.Column(database.DateTime)
 
     def as_dict(self):
         return {

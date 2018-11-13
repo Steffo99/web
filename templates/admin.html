@@ -1,0 +1,155 @@
+{% extends "bases/index.html" %}
+
+{% block title %}
+    Super Secret Admin panel
+{% endblock %}
+
+{% block head %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+    <script>
+        const username = "{{ username }}";
+        const password = "{{ password }}";
+
+        function post_new() {
+            let textareaElement = $(`#blogpost-${post_id} .doublebox .bot textarea`);
+            let formdata = new FormData();
+            formdata.append("username", username);
+            formdata.append("password", password);
+            formdata.append("post_id", post_id);
+            formdata.append("content", textareaElement.val());
+            fetch("/api/blog", {
+                method: "PUT",
+                body: formdata
+            }).then(function(response) {
+                if(response.ok)
+                {
+                    textareaElement.replaceWith(`<div class="content">${textareaElement.val()}</div>`);
+                    let editButton = $(`#blogpost-${post_id} .doublebox .top .admin button.edit`);
+                    editButton.replaceWith(`<button class="edit" onclick="post_edit(${post_id})">Edit</button>`);
+                }
+                else throw new Error("Edit failed.")
+            }).catch(function(error) {
+                alert(error);
+                console.error(error);
+            })
+        }
+
+        function post_delete(post_id) {
+            let postElement = $(`#blogpost-${post_id}`);
+            let formdata = new FormData();
+            formdata.append("username", username);
+            formdata.append("password", password);
+            formdata.append("post_id", post_id);
+            if(confirm(`Delete post #${post_id}?`)) {
+                fetch("/api/blog", {
+                    method: "DELETE",
+                    body: formdata
+                }).then(function(response) {
+                    if(response.ok) {
+                        postElement.remove();
+                    }
+                    else throw new Error("Deletion failed.")
+                }).catch(function(error) {
+                    alert(error);
+                    console.error(error);
+                })
+            }
+        }
+
+        function post_edit(post_id) {
+            let postContentElement = $(`#blogpost-${post_id} .doublebox .bot .content`);
+            let postContent = postContentElement.html();
+            postContentElement.replaceWith(`<textarea></textarea>`);
+            let textareaElement = $(`#blogpost-${post_id} .doublebox .bot textarea`);
+            textareaElement.val(postContent);
+            let editButton = $(`#blogpost-${post_id} .doublebox .top .admin button.edit`);
+            editButton.replaceWith(`<button class="edit" onclick="post_put(${post_id})">Complete edit</button>`);
+        }
+
+        function post_put(post_id) {
+            let textareaElement = $(`#blogpost-${post_id} .doublebox .bot textarea`);
+            let formdata = new FormData();
+            formdata.append("username", username);
+            formdata.append("password", password);
+            formdata.append("post_id", post_id);
+            formdata.append("content", textareaElement.val());
+            fetch("/api/blog", {
+                method: "PUT",
+                body: formdata
+            }).then(function(response) {
+                if(response.ok)
+                {
+                    textareaElement.replaceWith(`<div class="content">${textareaElement.val()}</div>`);
+                    let editButton = $(`#blogpost-${post_id} .doublebox .top .admin button.edit`);
+                    editButton.replaceWith(`<button class="edit" onclick="post_edit(${post_id})">Edit</button>`);
+                }
+                else throw new Error("Edit failed.")
+            }).catch(function(error) {
+                alert(error);
+                console.error(error);
+            })
+        }
+
+        function post_post(post_id) {
+            let textareaElement = $(`#blogpost-new .doublebox .bot textarea`);
+            let formdata = new FormData();
+            formdata.append("username", username);
+            formdata.append("password", password);
+            formdata.append("post_id", post_id);
+            formdata.append("content", textareaElement.val());
+            fetch("/api/blog", {
+                method: "POST",
+                body: formdata
+            }).then(function(response) {
+                if(response.ok)
+                {
+                    alert("post posted refresh me");
+                    window.reload();
+                }
+                else throw new Error("Edit failed.")
+            }).catch(function(error) {
+                alert(error);
+                console.error(error);
+            })
+        }
+    </script>
+{% endblock %}
+
+{% block body %}
+{% include "include/title.html" %}
+    <div class="h-container">
+        <div class="main-container">
+            {% for blogpost in blogposts %}
+                {% include "include/blogpost.html" %}
+            {% endfor %}
+            <div id="blogpost-new">
+                <div class="doublebox">
+                    <div class="top">
+                        <span class="left">
+                            <span class="title">
+                                New blogpost
+                            </span>
+                            {% if admin %}
+                                <span class="admin">
+                                    <button class="new" onclick="post_post()">New</button>
+                                </span>
+                            {% endif %}
+                        </span>
+                        <span class="right">
+                            <span class="date">
+                                Never
+                            </span>
+                            <span class="permalink">
+                                New
+                            </span>
+                        </span>
+                    </div>
+                    <div class="bot">
+                        <textarea>
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

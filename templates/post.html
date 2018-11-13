@@ -1,0 +1,16 @@
+{% extends "bases/index.html" %}
+
+{% block title %}
+    Post #{{ blogpost.post_id }} • Steffo
+{% endblock %}
+
+{% block body %}
+{% include "include/title.html" %}
+    <div class="h-container">
+        <div class="main-container">
+            <a href="/" class="back-to-home">◄ Return home</a>
+            {% include "include/blogpost.html" %}
+        </div>
+        {% include "include/sidebar.html" %}
+    </div>
+{% endblock %}

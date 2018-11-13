@@ -1,20 +1,30 @@
-<div class="doublebox" id="blogpost-{{ blogpost.post_id }}">
-    <div class="top">
-        <span class="left">
-            <span class="title">
-                Blogpost
+<article id="blogpost-{{ blogpost.post_id }}">
+    <div class="doublebox">
+        <div class="top">
+            <span class="left">
+                <span class="title">
+                    Blogpost
+                </span>
+                {% if admin %}
+                    <span class="admin">
+                        <button class="edit" onclick="post_edit({{ blogpost.post_id }})">Edit</button>
+                        <button class="delete" onclick="post_delete({{ blogpost.post_id }})">Delete</button>
+                    </span>
+                {% endif %}
             </span>
-        </span>
-        <span class="right">
-            <span class="date">
-                {{ blogpost.time }}
+            <span class="right">
+                <span class="date">
+                    {{ blogpost.time }}
+                </span>
+                <a class="permalink" href="/blogpost/{{ blogpost.post_id }}">
+                    #{{ blogpost.post_id }}
+                </a>
             </span>
-            <a class="permalink" href="/blogpost/{{ blogpost.post_id }}">
-                #
-            </a>
-        </span>
+        </div>
+        <div class="bot">
+            <div class="content">
+                {{ blogpost.content | safe }}
+            </div>
+        </div>
     </div>
-    <div class="bot">
-        {{ blogpost.content | safe }}
-    </div>
-</div>
+</article>
