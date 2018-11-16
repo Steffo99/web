@@ -9,14 +9,16 @@ app = f.Flask(__name__)
 app.config.from_object("configuration.Config")
 db.database.init_app(app)
 
+correct_username = app.config.get("POST_USERNAME")
+correct_password = app.config.get("POST_PASSWORD")
+if correct_username is None or correct_password is None:
+    raise Exception("No username or password set.")
+
 
 def is_steffo(username, password):
     # who cares about encrypting, i don't reuse passwords anyways
-    correct_username = app.config.get("POST_USERNAME")
-    correct_password = app.config.get("POST_PASSWORD")
-    if correct_username is None or correct_password is None:
-        f.abort(500)
-        return
+    correct_username = app.config["POST_USERNAME"]
+    correct_password = app.config["POST_PASSWORD"]
     return username == correct_username and password == correct_password
 
 
@@ -52,7 +54,7 @@ def page_blogpost(i: int):
 def page_admin():
     auth = f.request.authorization
     if not auth or not is_steffo(auth.username, auth.password):
-        return "Please insert Steffo's Password.", 401, {"WWW-Authenticate": 'Basic realm="Admin page"'}
+        return "Please insert Steffo's Password.", 401, {"WWW-Authenticate": 'Basic realm="You are entering Steffo\'s Realm. Please enter his password."'}
     page = f.request.args.get("page", 0)
     blogposts = db.BlogPost.query \
                            .order_by(db.BlogPost.timestamp.desc()) \
