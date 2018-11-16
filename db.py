@@ -16,6 +16,5 @@ class BlogPost(database.Model):
             "id": self.post_id,
             "author": self.author,
             "content": self.content,
-            "timestamp": self.timestamp,
-            "edit_timestamp": self.edit_timestamp
+            "timestamp": self.timestamp
         }

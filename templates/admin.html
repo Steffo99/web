@@ -10,28 +10,35 @@
         const username = "{{ username }}";
         const password = "{{ password }}";
 
-        function post_new() {
-            let textareaElement = $(`#blogpost-${post_id} .doublebox .bot textarea`);
-            let formdata = new FormData();
-            formdata.append("username", username);
-            formdata.append("password", password);
-            formdata.append("post_id", post_id);
-            formdata.append("content", textareaElement.val());
-            fetch("/api/blog", {
-                method: "PUT",
-                body: formdata
-            }).then(function(response) {
-                if(response.ok)
-                {
-                    textareaElement.replaceWith(`<div class="content">${textareaElement.val()}</div>`);
-                    let editButton = $(`#blogpost-${post_id} .doublebox .top .admin button.edit`);
-                    editButton.replaceWith(`<button class="edit" onclick="post_edit(${post_id})">Edit</button>`);
-                }
-                else throw new Error("Edit failed.")
-            }).catch(function(error) {
-                alert(error);
-                console.error(error);
-            })
+        function create_blogpost(post_id, time, content) {
+            return `<article id="blogpost-${post_id}">
+    <div class="doublebox">
+        <div class="top">
+            <span class="left">
+                <span class="title">
+                    Blogpost
+                </span>
+                <span class="admin">
+                    <button class="edit" onclick="post_edit(${post_id})">Edit</button>
+                    <button class="delete" onclick="post_delete(${post_id})">Delete</button>
+                </span>
+            </span>
+            <span class="right">
+                <span class="date">
+                    ${time}
+                </span>
+                <a class="permalink" href="/blogpost/${post_id}">
+                    #${post_id}
+                </a>
+            </span>
+        </div>
+        <div class="bot">
+            <div class="content">
+                ${content}
+            </div>
+        </div>
+    </div>
+</article>`
         }
 
         function post_delete(post_id) {
@@ -58,7 +65,7 @@
 
         function post_edit(post_id) {
             let postContentElement = $(`#blogpost-${post_id} .doublebox .bot .content`);
-            let postContent = postContentElement.html();
+            let postContent = postContentElement.html().trim();
             postContentElement.replaceWith(`<textarea></textarea>`);
             let textareaElement = $(`#blogpost-${post_id} .doublebox .bot textarea`);
             textareaElement.val(postContent);
@@ -103,10 +110,14 @@
             }).then(function(response) {
                 if(response.ok)
                 {
-                    alert("post posted refresh me");
-                    window.reload();
+                    return response.json()
                 }
-                else throw new Error("Edit failed.")
+                else throw new Error("Post failed.")
+            }).then(function(data) {
+                let newPost = create_blogpost(data["id"], data["timestamp"], data["content"]);
+                let mainElement = $(".main-container");
+                mainElement.prepend(newPost);
+                textareaElement.val("");
             }).catch(function(error) {
                 alert(error);
                 console.error(error);
@@ -119,9 +130,6 @@
 {% include "include/title.html" %}
     <div class="h-container">
         <div class="main-container">
-            {% for blogpost in blogposts %}
-                {% include "include/blogpost.html" %}
-            {% endfor %}
             <div id="blogpost-new">
                 <div class="doublebox">
                     <div class="top">
@@ -145,11 +153,13 @@
                         </span>
                     </div>
                     <div class="bot">
-                        <textarea>
-                        </textarea>
+                        <textarea></textarea>
                     </div>
                 </div>
             </div>
+            {% for blogpost in blogposts %}
+                {% include "include/blogpost.html" %}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
