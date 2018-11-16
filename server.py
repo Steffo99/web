@@ -54,7 +54,7 @@ def page_blogpost(i: int):
 def page_admin():
     auth = f.request.authorization
     if not auth or not is_steffo(auth.username, auth.password):
-        return f"Please insert Steffo's Password. You inserted {auth.username} {auth.password}. You should insert {app.config['POST_USERNAME']}, {app.config['POST_PASSWORD']}", 401, {"WWW-Authenticate": 'Basic realm="You are entering Steffo\'s Realm. Please enter his password."'}
+        return "Please insert Steffo's Password.", 401, {"WWW-Authenticate": 'Basic realm="You are entering Steffo\'s Realm. Please enter his password."'}
     page = f.request.args.get("page", 0)
     blogposts = db.BlogPost.query \
                            .order_by(db.BlogPost.timestamp.desc()) \
