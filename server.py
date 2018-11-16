@@ -37,7 +37,7 @@ def page_home():
                            .limit(10) \
                            .offset(page * 10) \
                            .all()
-    return f.render_template("home.html", blogposts=blogposts)
+    return f.render_template("home.html", blogposts=blogposts, test=app.config["POST_USERNAME"])
 
 
 @app.route("/blogpost/<int:i>")
