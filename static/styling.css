@@ -58,6 +58,51 @@ blockquote {
   padding: 2px 4px 2px 8px;
   margin: 8px;
 }
+textarea {
+  background-color: rgba(160, 204, 255, 0.1);
+  color: #a0ccff;
+  border: 1px solid #a0ccff;
+  padding: 2px;
+  margin: 1px;
+  font-size: small;
+  font-family: "Consolas", "Source Code Pro", monospace;
+  width: 100%;
+  height: 300px;
+}
+button,
+input[type="submit"],
+.btn {
+  background-color: rgba(160, 204, 255, 0.1);
+  color: #a0ccff !important;
+  border: 1px solid #a0ccff;
+  border-radius: 0;
+  padding: 2px 8px;
+  margin: 1px;
+  font-size: medium;
+  font-family: sans-serif;
+  text-decoration: none;
+  cursor: default;
+}
+button:hover,
+input[type="submit"]:hover,
+.btn:hover {
+  background-color: rgba(160, 204, 255, 0.2);
+  color: #ffffff;
+  border-color: #ffffff;
+}
+button:active,
+input[type="submit"]:active,
+.btn:active {
+  background-color: rgba(160, 204, 255, 0.3);
+  color: white;
+  border-color: white;
+}
+pre {
+  margin: 0;
+}
+code {
+  font-family: "Consolas", "Source Code Pro", monospace;
+}
 .h-container {
   display: flex;
   justify-content: center;

@@ -30,7 +30,8 @@ a {
 
     &[href^="http:"]::before {
         //Unsafe link
-        font-family: "Font Awesome 5 Free"; 
+        //noinspection CssNoGenericFontName
+        font-family: "Font Awesome 5 Free";
         font-weight: bold;
         content: "\f09c";
         margin-right: 3px;
@@ -40,7 +41,8 @@ a {
         color: @pastel-red;
         
         &::before {
-            font-family: "Font Awesome 5 Free"; 
+            //noinspection CssNoGenericFontName
+            font-family: "Font Awesome 5 Free";
             font-weight: bold;
             content: "\f076";
             margin-right: 3px;
@@ -77,6 +79,51 @@ blockquote {
     background-color: fade(@fg, 10%);
     padding: 2px 4px 2px 8px;
     margin: 8px;
+}
+
+textarea {
+    background-color: fade(@fg, 10%);
+    color: @fg;
+    border: 1px solid @fg;
+    padding: 2px;
+    margin: 1px;
+    font-size: small;
+    font-family: "Consolas", "Source Code Pro", monospace;
+    width: 100%;
+    height: 300px;
+}
+
+button, input[type="submit"], .btn {
+    background-color: fade(@fg, 10%);
+    color: @fg !important;
+    border: 1px solid @fg;
+    border-radius: 0;
+    padding: 2px 8px;
+    margin: 1px;
+    font-size: medium;
+    font-family: sans-serif;
+    text-decoration: none;
+    cursor: default;
+
+    &:hover {
+        background-color: fade(@fg, 20%);
+        color: lighten(@fg, 25%);
+        border-color: lighten(@fg, 25%);
+    }
+
+    &:active {
+        background-color: fade(@fg, 30%);
+        color: white;
+        border-color: white;
+    }
+}
+
+pre {
+    margin: 0;
+}
+
+code {
+    font-family: "Consolas", "Source Code Pro", monospace;
 }
 
 //Elements
