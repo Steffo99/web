@@ -97,45 +97,39 @@ img {
   display: block;
   max-width: 100%;
 }
-article a {
-  /*
-        &::before {
-            //External link
-            //noinspection CssNoGenericFontName
-            font-family: "Font Awesome 5 Free";
-            font-weight: bold;
-            content: "\f0c1";
-            margin-right: 3px;
-        }
-        */
+article .bot a::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: bold;
+  content: "\f0c1";
+  margin-right: 3px;
 }
-article a[href^="https://t.me"]::before {
+article .bot a[href^="https://t.me"]::before {
   font-family: "Font Awesome 5 Brands";
   font-weight: bold;
   content: "\f2c6";
   margin-right: 4px;
 }
-article a[href^="https://www.youtube.com"]::before,
-article a[href^="https://youtu.be"]::before {
+article .bot a[href^="https://www.youtube.com"]::before,
+article .bot a[href^="https://youtu.be"]::before {
   font-family: "Font Awesome 5 Brands";
   font-weight: bold;
   content: "\f167";
   margin-right: 4px;
 }
-article a[href^="https://vimeo.com"]::before,
-article a[href^="https://player.vimeo.com"]::before {
+article .bot a[href^="https://vimeo.com"]::before,
+article .bot a[href^="https://player.vimeo.com"]::before {
   font-family: "Font Awesome 5 Brands";
   font-weight: bold;
   content: "\f27d";
   margin-right: 4px;
 }
-article a[href^="http:"]::before {
+article .bot a[href^="http:"]::before {
   font-family: "Font Awesome 5 Free";
   font-weight: bold;
   content: "\f09c";
   margin-right: 3px;
 }
-article a[href^="magnet:"]::before {
+article .bot a[href^="magnet:"]::before {
   font-family: "Font Awesome 5 Free";
   font-weight: bold;
   content: "\f076";
