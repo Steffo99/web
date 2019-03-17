@@ -13,20 +13,8 @@ a[href^="https:"],
 a[href^="mailto:"] {
   color: #00b2b3;
 }
-a[href^="http:"]::before {
-  font-family: "Font Awesome 5 Free";
-  font-weight: bold;
-  content: "\f09c";
-  margin-right: 3px;
-}
 a[href^="magnet:"] {
   color: #ff7d7d;
-}
-a[href^="magnet:"]::before {
-  font-family: "Font Awesome 5 Free";
-  font-weight: bold;
-  content: "\f076";
-  margin-right: 3px;
 }
 a[href^="magnet:"]:hover {
   color: #ffb0b0;
@@ -102,6 +90,56 @@ pre {
 }
 code {
   font-family: "Consolas", "Source Code Pro", monospace;
+}
+img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: 100%;
+}
+article a {
+  /*
+        &::before {
+            //External link
+            //noinspection CssNoGenericFontName
+            font-family: "Font Awesome 5 Free";
+            font-weight: bold;
+            content: "\f0c1";
+            margin-right: 3px;
+        }
+        */
+}
+article a[href^="https://t.me"]::before {
+  font-family: "Font Awesome 5 Brands";
+  font-weight: bold;
+  content: "\f2c6";
+  margin-right: 4px;
+}
+article a[href^="https://www.youtube.com"]::before,
+article a[href^="https://youtu.be"]::before {
+  font-family: "Font Awesome 5 Brands";
+  font-weight: bold;
+  content: "\f167";
+  margin-right: 4px;
+}
+article a[href^="https://vimeo.com"]::before,
+article a[href^="https://player.vimeo.com"]::before {
+  font-family: "Font Awesome 5 Brands";
+  font-weight: bold;
+  content: "\f27d";
+  margin-right: 4px;
+}
+article a[href^="http:"]::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: bold;
+  content: "\f09c";
+  margin-right: 3px;
+}
+article a[href^="magnet:"]::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: bold;
+  content: "\f076";
+  margin-right: 3px;
 }
 .h-container {
   display: flex;
