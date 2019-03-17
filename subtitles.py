@@ -5,7 +5,9 @@ adj = [
     "Cold",
     "Virtual",
     "Winter",
-    "Snowy"
+    "Snowy",
+    "Internet",
+    "Earth"
 ]
 
 noun = [
@@ -14,7 +16,9 @@ noun = [
     "Tower",
     "Headquarters",
     "Room",
-    "Place"
+    "Place",
+    "Base",
+    "Building"
 ]
 
 
