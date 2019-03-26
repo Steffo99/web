@@ -53,6 +53,9 @@ def page_blogpost(i: int):
 @app.route("/goto/<key>")
 def page_goto(key: str):
     goto: db.Redirect = db.Redirect.query.filter(db.Redirect.redirect_key == key).first_or_404()
+    if goto.redirect_to is None:
+        f.abort(404)
+        return
     return f.redirect(goto.redirect_to)
 
 
