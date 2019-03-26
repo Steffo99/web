@@ -50,6 +50,12 @@ def page_blogpost(i: int):
     return f.render_template("post.html", blogpost=blogpost)
 
 
+@app.route("/goto/<key>")
+def page_goto(key: str):
+    goto: db.Redirect = db.Redirect.query.filter(db.Redirect.redirect_key == key).first_or_404()
+    return f.redirect(goto.redirect_to)
+
+
 @app.route("/admin")
 def page_admin():
     auth = f.request.authorization
@@ -157,4 +163,6 @@ def after_every_request(response):
 
 
 if __name__ == "__main__":
+    with app.app_context():
+        db.database.create_all()
     app.run(debug=True)

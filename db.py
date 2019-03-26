@@ -18,3 +18,10 @@ class BlogPost(database.Model):
             "content": self.content,
             "timestamp": self.timestamp
         }
+
+
+class Redirect(database.Model):
+    __tablename__ = "redirects"
+
+    redirect_key = database.Column(database.String, primary_key=True)
+    redirect_to = database.Column(database.String)
