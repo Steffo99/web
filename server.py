@@ -9,9 +9,7 @@ app = f.Flask(__name__)
 app.config.from_object("configuration.Config")
 db.database.init_app(app)
 
-correct_username = app.config.get("POST_USERNAME")
-correct_password = app.config.get("POST_PASSWORD")
-if correct_username is None or correct_password is None:
+if not (app.config.get("POST_USERNAME") and app.config.get("POST_PASSWORD")):
     raise Exception("No username or password set.")
 
 
