@@ -270,6 +270,10 @@ article .bot {
     padding: 2px 4px 2px 8px;
     margin: 8px;
 
+    &.big {
+        font-size: xx-large;
+    }
+
     &.plus {
         color: @pastel-lime;
         background-color: fade(@pastel-lime, 10%);
@@ -304,6 +308,15 @@ article .bot {
             content: "\f0c8";
             margin-right: 6px;            
         }
+    }
+}
+
+.spoiler {
+    color: rgba(0, 0, 0, 0);
+    border: 1px solid fade(@fg, 10%);
+
+    &:hover {
+        color: @fg;
     }
 }
 
