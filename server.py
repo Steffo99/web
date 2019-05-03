@@ -7,6 +7,8 @@ import subtitles
 
 app = f.Flask(__name__)
 app.config.from_object("configuration.Config")
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True
 db.database.init_app(app)
 
 if not (app.config.get("POST_USERNAME") and app.config.get("POST_PASSWORD")):

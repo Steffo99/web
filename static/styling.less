@@ -1,7 +1,7 @@
-@bg: #0d193b;
-@fg: #a0ccff;
-@li: #00ffff;
-@ec: #ffffff;
+@bg: #0d193b; //Background color
+@fg: #a0ccff; //Foreground color
+@li: #00ffff; //Link
+@ec: #ffffff; //Extra color
 
 @pastel-red: #ff7d7d;
 @pastel-orange: #ffbb7d;
@@ -11,9 +11,12 @@
 @pastel-blue: #7d7dff;
 @pastel-magenta: #ff7dff;
 
+@main-fonts: "Arial", "Helvetica Neue", sans-serif;
+@monospace-fonts: "Consolas", "Source Code Pro", monospace;
+
 //General
 body {
-    font-family: "Arial", sans-serif;
+    font-family: @main-fonts;
     background-color: @bg;
     color: @fg;
     box-sizing: border-box; 
@@ -53,7 +56,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 code {
-    font-family: "Consolas", monospace;
+    font-family: @monospace-fonts;
 }
 
 blockquote {
@@ -71,7 +74,7 @@ textarea {
     padding: 2px;
     margin: 1px;
     font-size: small;
-    font-family: "Consolas", "Source Code Pro", monospace;
+    font-family: @monospace-fonts;
     width: 100%;
     height: 300px;
 }
@@ -105,10 +108,6 @@ pre {
     margin: 0;
 }
 
-code {
-    font-family: "Consolas", "Source Code Pro", monospace;
-}
-
 img {
     margin-left: auto;
     margin-right: auto;
@@ -118,64 +117,56 @@ img {
 
 //Article exclusive improvements
 article .bot {
-
     //Links with icons
     a {
+        //External link
         &::before {
-            //External link
-            //noinspection CssNoGenericFontName
             font-family: "Font Awesome 5 Free";
             font-weight: bold;
             content: "\f0c1";
             margin-right: 3px;
         }
 
+        //Telegram link
         &[href^="https://t.me"]::before {
-            //Telegram link
-            //noinspection CssNoGenericFontName
             font-family: "Font Awesome 5 Brands";
             font-weight: bold;
             content: "\f2c6";
             margin-right: 4px;
         }
 
+        //YouTube link
         &[href^="https://www.youtube.com"]::before, &[href^="https://youtu.be"]::before {
-            //YouTube link
-            //noinspection CssNoGenericFontName
             font-family: "Font Awesome 5 Brands";
             font-weight: bold;
             content: "\f167";
             margin-right: 4px;
         }
 
+        //Video link
         &[href^="https://vimeo.com"]::before, &[href^="https://player.vimeo.com"]::before {
-            //Video link
-            //noinspection CssNoGenericFontName
             font-family: "Font Awesome 5 Brands";
             font-weight: bold;
             content: "\f27d";
             margin-right: 4px;
         }
 
+        //Unsafe link
         &[href^="http:"]::before {
-            //Unsafe link
-            //noinspection CssNoGenericFontName
             font-family: "Font Awesome 5 Free";
             font-weight: bold;
             content: "\f09c";
             margin-right: 3px;
         }
 
+        //Magnet link
         &[href^="magnet:"]::before {
-            //noinspection CssNoGenericFontName
             font-family: "Font Awesome 5 Free";
             font-weight: bold;
             content: "\f076";
             margin-right: 3px;
         }
     }
-
-
 }
 
 //Elements
@@ -252,6 +243,7 @@ article .bot {
     }
 }
 
+//This is something about the sidebar... better leave it alone.
 .multirow {
     list-style-type: none;
     margin-top: 0;
@@ -274,6 +266,47 @@ article .bot {
     }
 }
 
+.proscons {
+    padding: 2px 4px 2px 8px;
+    margin: 8px;
+
+    &.plus {
+        color: @pastel-lime;
+        background-color: fade(@pastel-lime, 10%);
+
+        &::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: bold;
+            content: "\f0fe";
+            margin-right: 6px;
+        }
+    }
+    
+    &.minus {
+        color: @pastel-red;
+        background-color: fade(@pastel-red, 10%);
+
+        &::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: bold;
+            content: "\f146";
+            margin-right: 6px;            
+        }
+    }
+
+    &:not(.plus):not(.minus) {
+        color: @fg;
+        background-color: fade(@fg, 10%);
+
+        &::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: bold;
+            content: "\f0c8";
+            margin-right: 6px;            
+        }
+    }
+}
+
 //Named stuff
 #top-bar {
     display: flex;
@@ -292,7 +325,7 @@ article .bot {
     }
 }
 
-//Fixes
+//Dirty hacks below
 #projects i {
     width: 20px;
 }
