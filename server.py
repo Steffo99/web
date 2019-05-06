@@ -1,3 +1,5 @@
+import secrets
+
 import flask as f
 import db
 import datetime
@@ -33,6 +35,7 @@ def page_home():
     page = f.request.args.get("page", 0)
     blogposts = db.BlogPost.query \
                            .filter(db.BlogPost.timestamp <= now) \
+                           .filter(db.BlogPost.privacy == db.Privacy.PUBLIC) \
                            .order_by(db.BlogPost.timestamp.desc()) \
                            .limit(10) \
                            .offset(page * 10) \
@@ -40,12 +43,13 @@ def page_home():
     return f.render_template("home.html", blogposts=blogposts)
 
 
-@app.route("/blogpost/<int:i>")
-def page_blogpost(i: int):
+@app.route("/blogpost/<key>")
+def page_blogpost(key: str):
     now = datetime.datetime.now()
     blogpost = db.BlogPost.query \
                           .filter(db.BlogPost.timestamp <= now) \
-                          .filter(db.BlogPost.post_id == i) \
+                          .filter(db.BlogPost.privacy != db.Privacy.PRIVATE) \
+                          .filter(db.BlogPost.post_id == key) \
                           .first_or_404()
     return f.render_template("post.html", blogpost=blogpost)
 
@@ -63,7 +67,8 @@ def page_goto(key: str):
 def page_admin():
     auth = f.request.authorization
     if not auth or not is_steffo(auth.username, auth.password):
-        return "Please insert Steffo's Password.", 401, {"WWW-Authenticate": 'Basic realm="You are entering Steffo\'s Realm. Please enter his password."'}
+        return "Please insert Steffo's Password.", 401, \
+               {"WWW-Authenticate": 'Basic realm="You are entering Steffo\'s Realm. Please enter his password."'}
     page = f.request.args.get("page", 0)
     blogposts = db.BlogPost.query \
                            .order_by(db.BlogPost.timestamp.desc()) \
@@ -92,10 +97,22 @@ def api_blog():
         if content is None:
             f.abort(400)
             return
+        # Get the post privacy
+        privacy_str = f.request.form.get("privacy")
+        if privacy_str is None:
+            f.abort(400)
+            return
+        try:
+            privacy = db.Privacy.__getattr__(privacy_str)
+        except AttributeError:
+            f.abort(400)
+            return
         # Create the new post
-        post = db.BlogPost(author="Steffo",
+        post = db.BlogPost(post_id=secrets.token_urlsafe(16),
+                           author="Steffo",
                            content=content,
-                           timestamp=timestamp)
+                           timestamp=timestamp,
+                           privacy=privacy)
         db.database.session.add(post)
         db.database.session.commit()
         return f.jsonify(post.as_dict())

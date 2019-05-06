@@ -1,15 +1,23 @@
+import enum
 import flask_sqlalchemy
 
 database = flask_sqlalchemy.SQLAlchemy()
 
 
+class Privacy(enum.IntEnum):
+    PUBLIC = 0
+    UNLISTED = 1
+    PRIVATE = 2
+
+
 class BlogPost(database.Model):
     __tablename__ = "blogposts"
 
-    post_id = database.Column(database.Integer, primary_key=True)
-    author = database.Column(database.String)
-    content = database.Column(database.Text)
+    post_id = database.Column(database.String, primary_key=True)
+    author = database.Column(database.String, nullable=False)
+    content = database.Column(database.Text, nullable=False)
     timestamp = database.Column(database.DateTime, nullable=False)
+    privacy = database.Column(database.Enum(Privacy), nullable=False)
 
     def as_dict(self):
         return {
