@@ -33,7 +33,3 @@ class Redirect(database.Model):
 
     redirect_key = database.Column(database.String, primary_key=True)
     redirect_to = database.Column(database.String)
-
-
-if __name__ == "__main__":
-    database.create_all()
