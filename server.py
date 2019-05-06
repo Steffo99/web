@@ -91,7 +91,7 @@ def api_blog():
             f.abort(403)
             return
         # Get the current time
-        timestamp = datetime.datetime.now()
+        timestamp = f.request.form.get("timestamp", datetime.datetime.now())
         # Get the post content
         content = f.request.form.get("content")
         if content is None:
@@ -107,9 +107,11 @@ def api_blog():
         except AttributeError:
             f.abort(400)
             return
+        # Get the post author
+        author = f.request.form.get("author", "Steffo")
         # Create the new post
         post = db.BlogPost(post_id=secrets.token_urlsafe(16),
-                           author="Steffo",
+                           author=author,
                            content=content,
                            timestamp=timestamp,
                            privacy=privacy)
