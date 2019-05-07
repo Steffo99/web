@@ -1,5 +1,5 @@
 import secrets
-
+import dateparser
 import flask as f
 import db
 import datetime
@@ -91,12 +91,16 @@ def api_blog():
             f.abort(403)
             return
         # Get the current time
-        timestamp = f.request.form.get("timestamp", datetime.datetime.now())
+        timestamp_str = f.request.form.get("timestamp")
+        if timestamp_str:
+            timestamp = dateparser.parse(timestamp_str)
+            if timestamp is None:
+                f.abort(400)
+                return
+        else:
+            timestamp = datetime.datetime.now()
         # Get the post content
-        content = f.request.form.get("content")
-        if content is None:
-            f.abort(400)
-            return
+        content = f.request.form.get("content", "")
         # Get the post privacy
         privacy_str = f.request.form.get("privacy")
         if privacy_str is None:
@@ -139,28 +143,30 @@ def api_blog():
         query = query.all()
         return f.jsonify([post.as_dict() for post in query])
     elif f.request.method == "PUT":
-        # Edit post
-        # Check password
-        if not is_steffo(f.request.form.get("username", ""), f.request.form.get("password", "")):
-            f.abort(403)
-            return
-        # Try to find the post to be edited
-        post_id = f.request.form.get("post_id")
-        if post_id is None:
-            f.abort(400)
-            return
-        post = db.BlogPost.query.filter_by(post_id=post_id).first_or_404()
-        # Get the new post contents
-        content = f.request.form.get("content")
-        if content is not None:
-            post.content = content
-        # Update the timestamp
-        timestamp = f.request.form.get("timestamp")
-        if timestamp is not None:
-            post.timestamp = timestamp
-        # Commit the updates
-        db.database.session.commit()
-        return f.jsonify(post.as_dict())
+        f.abort(404)
+        return
+        # # Edit post
+        # # Check password
+        # if not is_steffo(f.request.form.get("username", ""), f.request.form.get("password", "")):
+        #     f.abort(403)
+        #     return
+        # # Try to find the post to be edited
+        # post_id = f.request.form.get("post_id")
+        # if post_id is None:
+        #     f.abort(400)
+        #     return
+        # post = db.BlogPost.query.filter_by(post_id=post_id).first_or_404()
+        # # Get the new post contents
+        # content = f.request.form.get("content")
+        # if content is not None:
+        #     post.content = content
+        # # Update the timestamp
+        # timestamp = f.request.form.get("timestamp")
+        # if timestamp is not None:
+        #     post.timestamp = timestamp
+        # # Commit the updates
+        # db.database.session.commit()
+        # return f.jsonify(post.as_dict())
     elif f.request.method == "DELETE":
         # Delete post
         # Check password
