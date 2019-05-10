@@ -6,5 +6,30 @@
 
 {% block body %}
 {% include "include/title.html" %}
-    TODO
+    <form method="POST" action="{{ url_for("api_blog") }}">
+        <label>
+            Author
+            <input name="author" type="text">
+        </label>
+        <label>
+            Timestamp
+            <input name="timestamp" type="datetime-local">
+        </label>
+        <label>
+            Post text
+            <textarea name="content"></textarea>
+        </label>
+        <label>
+            <input name="privacy" value="PUBLIC" type="radio"> Public
+        </label>
+        <label>
+            <input name="privacy" value="UNLISTED" type="radio"> Unlisted
+        </label>
+        <label>
+            <input name="privacy" value="PRIVATE" type="radio"> Private
+        </label>
+        <input name="username" value="{{ username }}" type="hidden">
+        <input name="password" value="{{ password }}" type="hidden">
+        <input type="submit" value="Submit">
+    </form>
 {% endblock %}
