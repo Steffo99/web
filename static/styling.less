@@ -1,6 +1,6 @@
 @bg: #0d193b; //Background color
 @fg: #a0ccff; //Foreground color
-@li: #00ffff; //Link
+@li: #00caca; //Link
 @ec: #ffffff; //Extra color
 
 @pastel-red: #ff7d7d;
@@ -25,19 +25,6 @@ body {
 a {
     color: @li;
     text-decoration: none;
-
-    &[href^="http:"], &[href^="https:"], &[href^="mailto:"] {
-        //External link
-        color: darken(@li, 15%);
-    }
-
-    &[href^="magnet:"] {
-        color: @pastel-red;
-
-        &:hover {
-            color: lighten(@pastel-red, 10%);
-        }
-    }
 
     &:hover {
         color: lighten(@li, 25%);
@@ -125,7 +112,7 @@ article {
                 font-family: "Font Awesome 5 Free";
                 font-weight: bold;
                 content: "\f0c1";
-                margin-right: 3px;
+                margin-right: 4px;
             }
 
             //Telegram link
@@ -133,7 +120,6 @@ article {
                 font-family: "Font Awesome 5 Brands";
                 font-weight: bold;
                 content: "\f2c6";
-                margin-right: 4px;
             }
 
             //YouTube link
@@ -141,7 +127,6 @@ article {
                 font-family: "Font Awesome 5 Brands";
                 font-weight: bold;
                 content: "\f167";
-                margin-right: 4px;
             }
 
             //Vimeo link
@@ -149,7 +134,6 @@ article {
                 font-family: "Font Awesome 5 Brands";
                 font-weight: bold;
                 content: "\f27d";
-                margin-right: 4px;
             }
 
             //GitHub link
@@ -157,7 +141,6 @@ article {
                 font-family: "Font Awesome 5 Brands";
                 font-weight: bold;
                 content: "\f09b";
-                margin-right: 4px;
             }
 
             //Itchio link
@@ -165,7 +148,6 @@ article {
                 font-family: "Font Awesome 5 Brands";
                 font-weight: bold;
                 content: "\f83a";
-                margin-right: 4px;
             }
 
             //Kickstarter link
@@ -173,15 +155,13 @@ article {
                 font-family: "Font Awesome 5 Brands";
                 font-weight: bold;
                 content: "\f3bb";
-                margin-right: 4px;
             }
 
             //Reddit link
-            &[href^="https://reddit.com"]::before, &[href^="https://new.reddit.com"]::before, &[href^="https://old.reddit.com"]::before {
+            &[href^="https://reddit.com"]::before, &[href^="https://new.reddit.com"]::before, &[href^="https://old.reddit.com"]::before, &[href^="https://redd.it"]::before {
                 font-family: "Font Awesome 5 Brands";
                 font-weight: bold;
                 content: "\f281";
-                margin-right: 4px;
             }
 
             //Twitch link
@@ -189,15 +169,13 @@ article {
                 font-family: "Font Awesome 5 Brands";
                 font-weight: bold;
                 content: "\f1e8";
-                margin-right: 4px;
             }
 
             //Steam link
-            &[href^="https://steampowered.com"]::before, &[href^="https://steamcommunity.com"]::before, &[href^="https://partner.steamgames.com"]::before, &[href^="steam:"]::before {
+            &[href^="https://store.steampowered.com"]::before, &[href^="https://steamcommunity.com"]::before, &[href^="https://partner.steamgames.com"]::before, &[href^="steam:"]::before {
                 font-family: "Font Awesome 5 Brands";
                 font-weight: bold;
                 content: "\f1b6";
-                margin-right: 4px;
             }
 
             //Twitter link
@@ -205,7 +183,20 @@ article {
                 font-family: "Font Awesome 5 Brands";
                 font-weight: bold;
                 content: "\f099";
-                margin-right: 4px;
+            }
+
+            //Wikipedia link
+            &[href^="https://it.wikipedia.org"]::before, &[href^="https://en.wikipedia.org"]::before {
+                font-family: "Font Awesome 5 Brands";
+                font-weight: bold;
+                content: "\f266";
+            }
+
+            //Anchor
+            &[href^="#"]::before {
+                font-family: "Font Awesome 5 Free";
+                font-weight: bold;
+                content: "\f13d";
             }
 
             //Unsafe link
@@ -213,7 +204,6 @@ article {
                 font-family: "Font Awesome 5 Free";
                 font-weight: bold;
                 content: "\f09c";
-                margin-right: 3px;
             }
 
             //Magnet link
@@ -221,7 +211,6 @@ article {
                 font-family: "Font Awesome 5 Free";
                 font-weight: bold;
                 content: "\f076";
-                margin-right: 3px;
             }
         }
     }
