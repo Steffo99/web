@@ -33,6 +33,130 @@ a {
     &:active {
         color: white;
     }
+
+    //Icon link
+    //noinspection CssNoGenericFontName
+    &:not(.no-icon) {
+        //External link
+        &::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: bold;
+            content: "\f0c1";
+            margin-right: 4px;
+        }
+
+        //Telegram link
+        &[href^="https://t.me"]::before {
+            font-family: "Font Awesome 5 Brands";
+            font-weight: bold;
+            content: "\f2c6";
+            margin-right: 3px;
+        }
+
+        //YouTube link
+        &[href^="https://www.youtube.com"]::before, &[href^="https://youtu.be"]::before {
+            font-family: "Font Awesome 5 Brands";
+            font-weight: bold;
+            content: "\f167";
+            margin-right: 3px;
+        }
+
+        //Vimeo link
+        &[href^="https://vimeo.com"]::before, &[href^="https://player.vimeo.com"]::before {
+            font-family: "Font Awesome 5 Brands";
+            font-weight: bold;
+            content: "\f27d";
+            margin-right: 4px;
+        }
+
+        //GitHub link
+        &[href^="https://github.com"]::before, &[href^="https://gist.github.com"]::before {
+            font-family: "Font Awesome 5 Brands";
+            font-weight: bold;
+            content: "\f09b";
+            margin-right: 4px;
+        }
+
+        //Itchio link
+        &[href^="https://itch.io"]::before, &[href^="https://steffo.itch.io"]::before {
+            font-family: "Font Awesome 5 Brands";
+            font-weight: bold;
+            content: "\f83a";
+            margin-right: 3px;
+        }
+
+        //Kickstarter link
+        &[href^="https://www.kickstarter.com"]::before {
+            font-family: "Font Awesome 5 Brands";
+            font-weight: bold;
+            content: "\f3bb";
+            margin-right: 4px;
+        }
+
+        //Reddit link
+        &[href^="https://reddit.com"]::before, &[href^="https://new.reddit.com"]::before, &[href^="https://old.reddit.com"]::before, &[href^="https://redd.it"]::before {
+            font-family: "Font Awesome 5 Brands";
+            font-weight: bold;
+            content: "\f281";
+            margin-right: 3px;
+        }
+
+        //Twitch link
+        &[href^="https://www.twitch.tv"]::before, &[href^="https://clips.twitch.tv"]::before {
+            font-family: "Font Awesome 5 Brands";
+            font-weight: bold;
+            content: "\f1e8";
+            margin-right: 4px;
+        }
+
+        //Steam link
+        &[href^="https://store.steampowered.com"]::before, &[href^="https://steamcommunity.com"]::before, &[href^="https://partner.steamgames.com"]::before, &[href^="steam:"]::before {
+            font-family: "Font Awesome 5 Brands";
+            font-weight: bold;
+            content: "\f1b6";
+            margin-right: 4px;
+        }
+
+        //Twitter link
+        &[href^="https://twitter.com"]::before {
+            font-family: "Font Awesome 5 Brands";
+            font-weight: bold;
+            content: "\f099";
+            margin-right: 3px;
+        }
+
+        //Wikipedia link
+        &[href^="https://it.wikipedia.org"]::before, &[href^="https://en.wikipedia.org"]::before {
+            font-family: "Font Awesome 5 Brands";
+            font-weight: bold;
+            content: "\f266";
+            margin-right: 3px;
+        }
+
+        //Anchor
+        &[href^="#"]::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: bold;
+            content: "\f13d";
+            margin-right: 3px;
+        }
+
+        //Unsafe link
+        &[href^="http:"]::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: bold;
+            content: "\f09c";
+            margin-right: 4px;
+        }
+
+        //Magnet link
+        &[href^="magnet:"]::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: bold;
+            content: "\f076";
+            margin-right: 4px;
+        }
+    }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -100,120 +224,6 @@ img {
     margin-right: auto;
     display: block;
     max-width: 100%;
-}
-
-//Article exclusive improvements
-article {
-    .bot {
-        //Links with icons
-        a {
-            //External link
-            &::before {
-                font-family: "Font Awesome 5 Free";
-                font-weight: bold;
-                content: "\f0c1";
-                margin-right: 4px;
-            }
-
-            //Telegram link
-            &[href^="https://t.me"]::before {
-                font-family: "Font Awesome 5 Brands";
-                font-weight: bold;
-                content: "\f2c6";
-            }
-
-            //YouTube link
-            &[href^="https://www.youtube.com"]::before, &[href^="https://youtu.be"]::before {
-                font-family: "Font Awesome 5 Brands";
-                font-weight: bold;
-                content: "\f167";
-            }
-
-            //Vimeo link
-            &[href^="https://vimeo.com"]::before, &[href^="https://player.vimeo.com"]::before {
-                font-family: "Font Awesome 5 Brands";
-                font-weight: bold;
-                content: "\f27d";
-            }
-
-            //GitHub link
-            &[href^="https://github.com"]::before, &[href^="https://gist.github.com"]::before {
-                font-family: "Font Awesome 5 Brands";
-                font-weight: bold;
-                content: "\f09b";
-            }
-
-            //Itchio link
-            &[href^="https://itch.io"]::before, &[href^="https://steffo.itch.io"]::before {
-                font-family: "Font Awesome 5 Brands";
-                font-weight: bold;
-                content: "\f83a";
-            }
-
-            //Kickstarter link
-            &[href^="https://www.kickstarter.com"]::before {
-                font-family: "Font Awesome 5 Brands";
-                font-weight: bold;
-                content: "\f3bb";
-            }
-
-            //Reddit link
-            &[href^="https://reddit.com"]::before, &[href^="https://new.reddit.com"]::before, &[href^="https://old.reddit.com"]::before, &[href^="https://redd.it"]::before {
-                font-family: "Font Awesome 5 Brands";
-                font-weight: bold;
-                content: "\f281";
-            }
-
-            //Twitch link
-            &[href^="https://www.twitch.tv"]::before, &[href^="https://clips.twitch.tv"]::before {
-                font-family: "Font Awesome 5 Brands";
-                font-weight: bold;
-                content: "\f1e8";
-            }
-
-            //Steam link
-            &[href^="https://store.steampowered.com"]::before, &[href^="https://steamcommunity.com"]::before, &[href^="https://partner.steamgames.com"]::before, &[href^="steam:"]::before {
-                font-family: "Font Awesome 5 Brands";
-                font-weight: bold;
-                content: "\f1b6";
-            }
-
-            //Twitter link
-            &[href^="https://twitter.com"]::before {
-                font-family: "Font Awesome 5 Brands";
-                font-weight: bold;
-                content: "\f099";
-            }
-
-            //Wikipedia link
-            &[href^="https://it.wikipedia.org"]::before, &[href^="https://en.wikipedia.org"]::before {
-                font-family: "Font Awesome 5 Brands";
-                font-weight: bold;
-                content: "\f266";
-            }
-
-            //Anchor
-            &[href^="#"]::before {
-                font-family: "Font Awesome 5 Free";
-                font-weight: bold;
-                content: "\f13d";
-            }
-
-            //Unsafe link
-            &[href^="http:"]::before {
-                font-family: "Font Awesome 5 Free";
-                font-weight: bold;
-                content: "\f09c";
-            }
-
-            //Magnet link
-            &[href^="magnet:"]::before {
-                font-family: "Font Awesome 5 Free";
-                font-weight: bold;
-                content: "\f076";
-            }
-        }
-    }
 }
 
 //Elements
@@ -325,6 +335,7 @@ article {
         color: @pastel-lime;
         background-color: fade(@pastel-lime, 10%);
 
+        //noinspection CssNoGenericFontName
         &::before {
             font-family: "Font Awesome 5 Free";
             font-weight: bold;
@@ -337,6 +348,7 @@ article {
         color: @pastel-red;
         background-color: fade(@pastel-red, 10%);
 
+        //noinspection CssNoGenericFontName
         &::before {
             font-family: "Font Awesome 5 Free";
             font-weight: bold;
@@ -349,6 +361,7 @@ article {
         color: @fg;
         background-color: fade(@fg, 10%);
 
+        //noinspection CssNoGenericFontName
         &::before {
             font-family: "Font Awesome 5 Free";
             font-weight: bold;
@@ -383,13 +396,4 @@ article {
         margin-top: auto;
         margin-bottom: auto;
     }
-}
-
-//Dirty hacks below
-#projects i {
-    width: 20px;
-}
-
-#accounts i {
-    width: 16px;
 }
