@@ -267,11 +267,9 @@ img {
   border: 1px solid white;
 }
 .proscons {
-  padding: 2px 4px 2px 8px;
-  margin: 8px;
-}
-.proscons.big {
-  font-size: xx-large;
+  padding: 4px 4px 4px 8px;
+  margin: 4px;
+  border-radius: 4px;
 }
 .proscons.plus {
   color: #7dff7d;
@@ -293,19 +291,96 @@ img {
   content: "\f146";
   margin-right: 6px;
 }
-.proscons:not(.plus):not(.minus) {
+.proscons.stars {
+  background-color: rgba(255, 255, 125, 0.1);
+  color: #ffff7d;
+  display: flex;
+}
+.proscons.stars .stars-0 {
+  margin-right: 6px;
+}
+.proscons.stars .stars-0::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: normal;
+  content: "\f005\f005\f005\f005\f005";
+}
+.proscons.stars .stars-1 {
+  margin-right: 6px;
+}
+.proscons.stars .stars-1::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: bold;
+  content: "\f005";
+}
+.proscons.stars .stars-1::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: normal;
+  content: "\f005\f005\f005\f005";
+}
+.proscons.stars .stars-2 {
+  margin-right: 6px;
+}
+.proscons.stars .stars-2::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: bold;
+  content: "\f005\f005";
+}
+.proscons.stars .stars-2::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: normal;
+  content: "\f005\f005\f005";
+}
+.proscons.stars .stars-3 {
+  margin-right: 6px;
+}
+.proscons.stars .stars-3::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: bold;
+  content: "\f005\f005\f005";
+}
+.proscons.stars .stars-3::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: normal;
+  content: "\f005\f005";
+}
+.proscons.stars .stars-4 {
+  margin-right: 6px;
+}
+.proscons.stars .stars-4::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: bold;
+  content: "\f005\f005\f005\f005";
+}
+.proscons.stars .stars-4::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: normal;
+  content: "\f005";
+}
+.proscons.stars .stars-5 {
+  margin-right: 6px;
+}
+.proscons.stars .stars-5::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: bold;
+  content: "\f005\f005\f005\f005\f005";
+}
+.proscons:not(.plus):not(.minus):not(.stars) {
   color: #a0ccff;
   background-color: rgba(160, 204, 255, 0.1);
 }
-.proscons:not(.plus):not(.minus)::before {
+.proscons:not(.plus):not(.minus):not(.stars)::before {
   font-family: "Font Awesome 5 Free";
   font-weight: bold;
   content: "\f0c8";
   margin-right: 6px;
 }
+.proscons.big {
+  font-size: xx-large;
+}
 .spoiler {
   color: rgba(0, 0, 0, 0);
   border: 1px solid rgba(160, 204, 255, 0.1);
+  border-radius: 2px;
 }
 .spoiler:hover {
   color: #a0ccff;

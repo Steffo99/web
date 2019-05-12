@@ -323,19 +323,16 @@ img {
     }
 }
 
+//noinspection CssNoGenericFontName
 .proscons {
-    padding: 2px 4px 2px 8px;
-    margin: 8px;
-
-    &.big {
-        font-size: xx-large;
-    }
+    padding: 4px 4px 4px 8px;
+    margin: 4px;
+    border-radius: 4px;
 
     &.plus {
         color: @pastel-lime;
         background-color: fade(@pastel-lime, 10%);
 
-        //noinspection CssNoGenericFontName
         &::before {
             font-family: "Font Awesome 5 Free";
             font-weight: bold;
@@ -348,20 +345,108 @@ img {
         color: @pastel-red;
         background-color: fade(@pastel-red, 10%);
 
-        //noinspection CssNoGenericFontName
         &::before {
             font-family: "Font Awesome 5 Free";
             font-weight: bold;
             content: "\f146";
-            margin-right: 6px;            
+            margin-right: 6px;
         }
     }
 
-    &:not(.plus):not(.minus) {
+    &.stars {
+        background-color: fade(@pastel-yellow, 10%);
+        color: @pastel-yellow;
+        display: flex;
+
+        .stars-0 {
+            margin-right: 6px;
+
+            &::after {
+                font-family: "Font Awesome 5 Free";
+                font-weight: normal;
+                content: "\f005\f005\f005\f005\f005";
+            }
+        }
+
+        .stars-1 {
+            margin-right: 6px;
+
+            &::before {
+                font-family: "Font Awesome 5 Free";
+                font-weight: bold;
+                content: "\f005";
+            }
+
+            &::after {
+                font-family: "Font Awesome 5 Free";
+                font-weight: normal;
+                content: "\f005\f005\f005\f005";
+            }
+        }
+
+        .stars-2 {
+            margin-right: 6px;
+
+            &::before {
+                font-family: "Font Awesome 5 Free";
+                font-weight: bold;
+                content: "\f005\f005";
+            }
+
+            &::after {
+                font-family: "Font Awesome 5 Free";
+                font-weight: normal;
+                content: "\f005\f005\f005";
+            }
+        }
+
+        .stars-3 {
+            margin-right: 6px;
+
+            &::before {
+                font-family: "Font Awesome 5 Free";
+                font-weight: bold;
+                content: "\f005\f005\f005";
+            }
+
+            &::after {
+                font-family: "Font Awesome 5 Free";
+                font-weight: normal;
+                content: "\f005\f005";
+            }
+        }
+
+        .stars-4 {
+            margin-right: 6px;
+
+            &::before {
+                font-family: "Font Awesome 5 Free";
+                font-weight: bold;
+                content: "\f005\f005\f005\f005";
+            }
+
+            &::after {
+                font-family: "Font Awesome 5 Free";
+                font-weight: normal;
+                content: "\f005";
+            }
+        }
+
+        .stars-5 {
+            margin-right: 6px;
+
+            &::before {
+                font-family: "Font Awesome 5 Free";
+                font-weight: bold;
+                content: "\f005\f005\f005\f005\f005";
+            }
+        }
+    }
+
+    &:not(.plus):not(.minus):not(.stars) {
         color: @fg;
         background-color: fade(@fg, 10%);
 
-        //noinspection CssNoGenericFontName
         &::before {
             font-family: "Font Awesome 5 Free";
             font-weight: bold;
@@ -369,16 +454,23 @@ img {
             margin-right: 6px;            
         }
     }
+
+    &.big {
+        font-size: xx-large;
+    }
 }
 
 .spoiler {
     color: rgba(0, 0, 0, 0);
     border: 1px solid fade(@fg, 10%);
+    border-radius: 2px;
 
     &:hover {
         color: @fg;
     }
 }
+
+//noinspection CssNoGenericFontName
 
 //Named stuff
 #top-bar {
