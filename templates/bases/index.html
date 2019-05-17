@@ -5,8 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Stefano Pigozzi">
         <meta name="keywords" content="Steffo,Stefano,Pigozzi">
-        <meta name="description" content="Steffo's website">
-        <meta property="og:site_name" content="Steffo" />
+        <meta property="og:site_name" content="Steffo's website" />
         {% if self.opengraph() %}
             {% block opengraph %}
             {% endblock %}
@@ -15,8 +14,9 @@
             <meta property="og:url" content="{{ request.path }}" />
             <meta property="og:type" content="website" />
             <meta property="og:image" content="{{ url_for("static", filename="favicon.png") }}" />
+            <meta property="og:description" content="" />
         {% endif %}
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}{% endblock %} • Steffo</title>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link href="{{ url_for("static", filename="styling.css") }}" rel="stylesheet">
         <link rel="icon" href="{{ url_for("static", filename="favicon.png") }}" type="image/png">

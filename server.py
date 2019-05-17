@@ -75,7 +75,7 @@ def page_admin():
                            .limit(10) \
                            .offset(page * 10) \
                            .all()
-    return f.render_template("admin.html",
+    return f.render_template("newpost.html",
                              blogposts=blogposts,
                              admin=True,
                              username=auth.username,
